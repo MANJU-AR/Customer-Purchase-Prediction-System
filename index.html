@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Purchase Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Customer Purchase Prediction</h1>
+
+        {% if prediction %}
+            <div class="result">{{ prediction }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <label>Age</label>
+            <input type="number" name="age" placeholder="Enter Age" required value="{{ input_data.age if input_data else '' }}">
+
+            <label>Gender (1=Male, 0=Female)</label>
+            <input type="number" name="gender" placeholder="1 for Male, 0 for Female" min="0" max="1" required value="{{ input_data.gender if input_data else '' }}">
+
+            <label>Annual Income</label>
+            <input type="number" name="income" placeholder="e.g. 50000" required value="{{ input_data.income if input_data else '' }}">
+
+            <label>Number of Purchases</label>
+            <input type="number" name="purchases" placeholder="e.g. 4" required value="{{ input_data.purchases if input_data else '' }}">
+
+            <label>Product Category (Encoded)</label>
+            <input type="number" name="category" placeholder="e.g. 3" required value="{{ input_data.category if input_data else '' }}">
+
+            <label>Time Spent on Website (minutes)</label>
+            <input type="number" name="time_spent" placeholder="e.g. 25.5" step="0.1" required value="{{ input_data.time_spent if input_data else '' }}">
+
+            <label>Loyalty Program (1=Yes, 0=No)</label>
+            <input type="number" name="loyalty" placeholder="1 for Yes, 0 for No" min="0" max="1" required value="{{ input_data.loyalty if input_data else '' }}">
+
+            <label>Discounts Availed</label>
+            <input type="number" name="discounts" placeholder="e.g. 2" required value="{{ input_data.discounts if input_data else '' }}">
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
